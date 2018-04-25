@@ -25,7 +25,10 @@ public class Exceldrivern {
 		// TODO Auto-generated method stub
               
 		fis =new FileInputStream("D:\\automationXpath\\Excel_CQRoll_xpath.xlsx");
-		 getCelldata(1,2);
+//		 getCelldata(1,2);
+		String value=setCelldata("automation",1,1);
+		System.out.println(value);
+		 
 //              System.out.println(value1);
 		
 //		 row =wbsheet.getRow(3);
@@ -106,5 +109,34 @@ public class Exceldrivern {
 		
 		 
 	}
+	
+	public static String setCelldata(String text,int rownum,int colnum) throws IOException
+	{
+		wb=new XSSFWorkbook(fis);
+		 wbsheet=wb.getSheet("Xpath");
+		 Row row=wbsheet.getRow(2);
+		 cell=(XSSFCell) row.getCell(2);
 
-}
+		 cell.setCellValue(text);				
+		 String celldata1= cell.getStringCellValue();
+
+		 return celldata1;
+				
+			}
+	
+	private static String setCellvalue(int i, int j) {
+
+		// TODO Auto-generated method stub
+
+		return null;
+
+		}
+			
+		
+
+//		 String value=cell.getStringCellValue();
+		
+		 
+	}
+
+
