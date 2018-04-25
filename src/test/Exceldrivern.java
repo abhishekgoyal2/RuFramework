@@ -25,8 +25,8 @@ public class Exceldrivern {
 		// TODO Auto-generated method stub
               
 		fis =new FileInputStream("D:\\automationXpath\\Excel_CQRoll_xpath.xlsx");
-		String value1 =getCelldata(2,2);
-              System.out.println(value1);
+		 getCelldata(1,2);
+//              System.out.println(value1);
 		
 //		 row =wbsheet.getRow(3);
 //		XSSFCell cell= row.getCell(1);
@@ -66,15 +66,44 @@ public class Exceldrivern {
 	
 //		System.out.println(value);
 	}
-	public static String getCelldata(int rownum,int colnum) throws IOException
+	public static void getCelldata(int rownum,int colnum) throws IOException
 	{
 		
 		wb=new XSSFWorkbook(fis);
 		 wbsheet=wb.getSheet("Xpath");
 		 row=wbsheet.getRow(rownum);
 		 cell=row.getCell(colnum);
-		 String value=cell.getStringCellValue();
-		return value;
+		 for (Row row:wbsheet)
+				{
+					for(Cell cell:row)
+					{
+						switch(cell.getCellType())
+						{
+							case Cell.CELL_TYPE_STRING:
+								System.out.println(cell.getStringCellValue());
+								break;
+							case Cell.CELL_TYPE_BOOLEAN:
+									System.out.println(cell.getBooleanCellValue());
+									break;
+							case Cell.CELL_TYPE_BLANK:
+								System.out.println("blank");
+								break;
+							case Cell.CELL_TYPE_ERROR:
+								System.out.println("error");
+								break;
+							case Cell.CELL_TYPE_FORMULA:
+								System.out.println(cell.getCellFormula());
+								break;
+							case Cell.CELL_TYPE_NUMERIC:
+								System.out.println(cell.getNumericCellValue());
+								break;
+								
+						}
+					}
+				}
+
+//		 String value=cell.getStringCellValue();
+		
 		 
 	}
 
